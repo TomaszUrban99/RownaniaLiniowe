@@ -1,5 +1,5 @@
 #ifndef SMACIERZ_HH
-#define MACIERZ_HH
+#define SMACIERZ_HH
 
 #include <iostream>
 #include "rozmiar.h"

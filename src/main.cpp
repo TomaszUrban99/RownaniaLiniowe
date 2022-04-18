@@ -1,5 +1,6 @@
 #include "SWektor.hh"
 #include "SMacierz.hh"
+#include "SUkladRownan.hh"
 #include "rozmiar.h"
 #include <fstream>
 
@@ -10,33 +11,28 @@ int main()
      ifstream input("macierz.txt");
 
   cout << endl
-       << " --------- Test klasy SMacierzc---------------" << endl;
+       << " --------- Test klasy SUkladRownan---------------" << endl;
   
-  SWektor<double,ROZMIAR>    W, W_wynik;
+  SWektor<double,ROZMIAR>    W, W_wynik, X;
   double Wynik;
   uint liczba=0;
   SMacierz<SWektor<double, ROZMIAR>, double, ROZMIAR> M;
+  SUkladRownanLiniowych< SMacierz<SWektor<double, ROZMIAR>, double, ROZMIAR>, SWektor <double, ROZMIAR>, double> UklRown;
   
   for (unsigned int Ind = 0; Ind < ROZMIAR; ++Ind) {
     W[Ind] = Ind;
   }
 
-  input>>M;
+  input>>UklRown;
 
-  cout << " Wyswietlenie Macierzy: " << endl;
-  cout << M << endl;
+  cout << " Wyswietlenie ukladu rownan: " << endl;
+  cout << UklRown << endl;
   cout << endl;
 
-  cout << M.ZamianaKol(0, W);
-  cout << endl;
-  
-  M.MaxWiersz(0, liczba);
+  UklRown.Solve(X);
 
-  cout << " Wyznacznik Macierzy " << endl;
-  cout << M.Wyznacznik() << endl;
-
-  cout << " Wyswietlenie Macierzy po sortowaniu: " << endl;
-  cout << M << endl;
+  cout << " Wyyswietlenie rozwiazania ukladu rownan: " << endl;
+  cout << X << endl;
   cout << endl;
 
 

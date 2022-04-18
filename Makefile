@@ -11,5 +11,5 @@ ${OBJ}:
 ${TRGDIR}/test_wektora: ${OBJ} ${OBJ}/main.o
 	g++ -o ${TRGDIR}/test_wektora ${OBJ}/main.o
 
-${OBJ}/main.o: src/main.cpp inc/SWektor.hh inc/SMacierz.hh
+${OBJ}/main.o: src/main.cpp inc/SWektor.hh inc/SMacierz.hh inc/SUkladRownan.hh
 	g++ -c ${CXXFLAGS} -o ${OBJ}/main.o src/main.cpp

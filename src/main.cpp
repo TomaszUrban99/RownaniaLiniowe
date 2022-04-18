@@ -1,31 +1,43 @@
 #include "SWektor.hh"
+#include "SMacierz.hh"
 #include "rozmiar.h"
+#include <fstream>
 
 using namespace std;
 
 int main()
 {
+     ifstream input("macierz.txt");
+
   cout << endl
-       << " --------- Test klasy Wektor<double," << ROZMIAR << "> ----------" << endl
-       << endl;
+       << " --------- Test klasy SMacierzc---------------" << endl;
   
   SWektor<double,ROZMIAR>    W, W_wynik;
+  double Wynik;
+  uint liczba=0;
+  SMacierz<SWektor<double, ROZMIAR>, double, ROZMIAR> M;
   
   for (unsigned int Ind = 0; Ind < ROZMIAR; ++Ind) {
     W[Ind] = Ind;
   }
 
-  cout << "  Wyswietlenie wspolrzednych wektora: W" << endl
-       << "        " << W << endl
-       << endl;
+  input>>M;
 
-  W_wynik = W*2;
-  cout << "  Wyswietlenie wyniku: W*2" << endl
-       << "        " << W_wynik << endl
-       << endl;
+  cout << " Wyswietlenie Macierzy: " << endl;
+  cout << M << endl;
+  cout << endl;
+
+  cout << M.ZamianaKol(0, W);
+  cout << endl;
   
-  W_wynik = W*2-W;
-  cout << "  Wyswietlenie wyniku: W-W*0.5" << endl
-       << "        " << W_wynik << endl
-       << endl;
+  M.MaxWiersz(0, liczba);
+
+  cout << " Wyznacznik Macierzy " << endl;
+  cout << M.Wyznacznik() << endl;
+
+  cout << " Wyswietlenie Macierzy po sortowaniu: " << endl;
+  cout << M << endl;
+  cout << endl;
+
+
 }

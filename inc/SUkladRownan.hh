@@ -1,0 +1,1 @@
+#ifndef SUKLAD_ROWNAN_HH

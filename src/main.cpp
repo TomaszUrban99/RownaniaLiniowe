@@ -1,6 +1,7 @@
 #include "SWektor.hh"
 #include "SMacierz.hh"
 #include "SUkladRownan.hh"
+#include "LiczbaZespolona.hh"
 #include "rozmiar.h"
 #include <fstream>
 
@@ -13,11 +14,11 @@ int main()
   cout << endl
        << " --------- Test klasy SUkladRownan---------------" << endl;
   
-  SWektor<double,ROZMIAR>    W, W_wynik, X;
+  SWektor<LZ,ROZMIAR>    W, W_wynik, X;
   double Wynik;
   uint liczba=0;
-  SMacierz<SWektor<double, ROZMIAR>, double, ROZMIAR> M;
-  SUkladRownanLiniowych< SMacierz<SWektor<double, ROZMIAR>, double, ROZMIAR>, SWektor <double, ROZMIAR>, double> UklRown;
+  SMacierz<SWektor<LZ, ROZMIAR>, LZ, ROZMIAR> M;
+  SUkladRownanLiniowych< SMacierz<SWektor<LZ, ROZMIAR>, LZ, ROZMIAR>, SWektor <LZ, ROZMIAR>, LZ> UklRown;
   
   for (unsigned int Ind = 0; Ind < ROZMIAR; ++Ind) {
     W[Ind] = Ind;

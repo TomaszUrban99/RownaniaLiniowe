@@ -160,20 +160,28 @@ template <typename STyp, typename SPole, uint SWymiar>
 SPole SMacierz <STyp, SPole, SWymiar>::Wyznacznik() const
 { 
   SMacierz <STyp, SPole, SWymiar> M3=*this;
-  double Wyznacznik=1;
+  SPole Wyznacznik=1;
   uint liczba=0;
 
 
   for(uint i=0; (i+1)<ROZMIAR; ++i){
     M3.MaxWiersz(i, liczba);
-    if (M3(i, i)==0) return 0;
+    if (M3(i, i)==0)
+    {
+      Wyznacznik=0;
+      return Wyznacznik;
+    }
     M3.ZerowanieKol(i); 
   }
 
   for(uint i=0; i<ROZMIAR; ++i) Wyznacznik=Wyznacznik*M3(i,i);
   if(liczba%2!=0) Wyznacznik=Wyznacznik*(-1);
   
-  if (Wyznacznik-epsilon<0 && Wyznacznik+epsilon>0) return 0;
+  if (Wyznacznik-epsilon<0 && Wyznacznik+epsilon>0)
+  {
+    Wyznacznik=0;
+    return Wyznacznik;
+  }
   
   return Wyznacznik;
 }

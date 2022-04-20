@@ -7,6 +7,7 @@
 #include "assert.h"
 #include <utility>
 #include "SOperacjeMatematyczne.hh"
+#include "LiczbaZespolona.hh"
 
 template <typename STyp, typename SPole, uint SWymiar>
 class SMacierz
@@ -76,7 +77,7 @@ SMacierz <STyp, SPole, SWymiar>& SMacierz <STyp, SPole, SWymiar>::MaxWiersz(cons
   for(; i<(ROZMIAR-Kol); ++i)
   {
     Temp2=modul((*this)(ROZMIAR-(i+1), Kol));
-    if(Temp>Temp2)
+    if(Temp2<Temp)
     {
       (*this).ZamianaWier(ROZMIAR-i, ROZMIAR-(i+1));
       liczba++;
@@ -156,6 +157,10 @@ assert(Kol<(ROZMIAR-1));
    }
  }
 
+/* Zrobić dwie wersje metod- jedna dla wyznacznika dla przypadku liczb zespolonych,
+drugą wersję dla liczb rzeczywistych 
+Dodatkowo napisać metodę liczącą moduł liczby rzeczywistej*/
+
 template <typename STyp, typename SPole, uint SWymiar>
 SPole SMacierz <STyp, SPole, SWymiar>::Wyznacznik() const
 { 
@@ -178,16 +183,13 @@ SPole SMacierz <STyp, SPole, SWymiar>::Wyznacznik() const
   for(uint i=0; i<ROZMIAR; ++i) Wyznacznik=Wyznacznik*M3(i,i);
   if(liczba%2!=0) Wyznacznik=Wyznacznik*(-1);
   
-  /*
   if (Wyznacznik-epsilon<0 && Wyznacznik+epsilon>0)
   {
     Wyznacznik=0;
     return Wyznacznik;
   }
-  */
 
   return Wyznacznik;
 }
-
 
 #endif

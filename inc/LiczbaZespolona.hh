@@ -3,6 +3,7 @@
 #include <fstream>
 #include <string>
 #include <ctype.h>
+#include <cmath>
 
 class LZ{
   private:
@@ -12,8 +13,10 @@ class LZ{
 
   public:
   // Funkcje zwracajace poszczegolne pola
-  double Re(){return this->re;}
-  double Im(){return this->im;}
+  double& Re(){return this->re;}
+  double& Im(){return this->im;}
+  double Re() const {return this->re;}
+  double Im() const {return this->im;}
 
   // Metody zmieniajace poszczegolne pola,
   // Argumentem jest zmienna typu double
@@ -30,13 +33,15 @@ class LZ{
   LZ& operator= (double liczba);
   LZ sprzezenie(LZ& lz1);
   double modul_kwadrat();
+  double modul();
   double potega_kwadrat(double liczba);
   bool operator==(LZ& lz1);
   bool operator==(double liczba);
   bool operator!=(double liczba);
   bool operator<(double liczba);
+  bool operator<(LZ lz1);
 };
 
 std::istream& operator>>(std::istream& input, LZ& lz);
 
-std::ostream& operator<<(std::ostream& s, const LZ& lz);
+std::ostream& operator<<(std::ostream& s, const LZ lz);

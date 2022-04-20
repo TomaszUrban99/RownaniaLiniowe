@@ -1,6 +1,6 @@
 #include "LiczbaZespolona.hh"
 
-std::ostream& operator<<(std::ostream& s, const LZ& lz){
+std::ostream& operator<<(std::ostream& s, const LZ lz){
   s<<"("<<lz.Re() << std::showpos << lz.Im()<< std::noshowpos << "i)";
     return s;
     }
@@ -138,6 +138,13 @@ double LZ::modul_kwadrat(){
   return potega_kwadrat(this->re)+potega_kwadrat(this->im);
 }
 
+double LZ::modul()
+{
+  double Temp;
+  Temp=(potega_kwadrat(this->re)+potega_kwadrat(this->im));
+  return sqrt(Temp);
+}
+
 double LZ::potega_kwadrat(double liczba){
   /* funkcja potega: funkcja zwracajaca  */
   /* kwadrat podanej liczby rzeczywistej */
@@ -151,5 +158,17 @@ bool LZ::operator==(LZ& lz1){
 
 bool LZ::operator<(double liczba)
 {
-  return ((this->re)<liczba);
+  double Temp;
+  Temp=this->modul();
+  return Temp<liczba;
+}
+
+bool LZ::operator<(LZ lz1)
+{
+  double Temp, Temp2;
+  
+  Temp=this->modul();
+  Temp2=lz1.modul();
+
+  return Temp<Temp2;
 }

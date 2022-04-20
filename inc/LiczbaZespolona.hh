@@ -27,14 +27,14 @@ class LZ{
   LZ operator* (double liczba);
   LZ operator/(double liczba);
   LZ operator/(LZ& lz1);
-  LZ operator= (double liczba);
-  LZ operator= (int liczba);
+  LZ& operator= (double liczba);
   LZ sprzezenie(LZ& lz1);
   double modul_kwadrat();
   double potega_kwadrat(double liczba);
   bool operator==(LZ& lz1);
   bool operator==(double liczba);
   bool operator!=(double liczba);
+  bool operator<(double liczba);
 };
 
 std::istream& operator>>(std::istream& input, LZ& lz);

@@ -14,11 +14,11 @@ int main()
   cout << endl
        << " --------- Test klasy SUkladRownan---------------" << endl;
   
-  SWektor<LZ,ROZMIAR>    W, W_wynik, X;
+  SWektor<double,ROZMIAR>    W, W_wynik, X;
   double Wynik;
   uint liczba=0;
-  SMacierz<SWektor<LZ, ROZMIAR>, LZ, ROZMIAR> M;
-  SUkladRownanLiniowych< SMacierz<SWektor<LZ, ROZMIAR>, LZ, ROZMIAR>, SWektor <LZ, ROZMIAR>, LZ> UklRown;
+  SMacierz<SWektor<double, ROZMIAR>, double, ROZMIAR> M;
+  SUkladRownanLiniowych< SMacierz<SWektor<double, ROZMIAR>, double, ROZMIAR>, SWektor <double, ROZMIAR>, double> UklRown;
   
   for (unsigned int Ind = 0; Ind < ROZMIAR; ++Ind) {
     W[Ind] = Ind;

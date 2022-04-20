@@ -117,6 +117,13 @@ LZ LZ::operator/(LZ& lz1){
   return ((*this)*sprzezenie(lz1))/modul_kwadrat();
 }
 
+LZ &LZ::operator= (double liczba)
+{
+  (this->re)=liczba;
+  (this->im)=0;
+  return (*this);
+}
+
 LZ LZ::sprzezenie(LZ& lz1){
   /* funkcja sprzezenie: funkcja zwracajaca */
   /* sprzezenie podanej liczby zespolonej   */
@@ -140,4 +147,9 @@ double LZ::potega_kwadrat(double liczba){
 
 bool LZ::operator==(LZ& lz1){
   return ((lz1.re==this->re)&&(lz1.im==this->im));
+}
+
+bool LZ::operator<(double liczba)
+{
+  return ((this->re)<liczba);
 }

@@ -4,6 +4,7 @@
 #include "SMacierz.hh"
 #include "SWektor.hh"
 #include "rozmiar.h"
+#include "LiczbaZespolona.hh"
 
 template <typename STypA, typename STypb, typename SPole>
 class SUkladRownanLiniowych {

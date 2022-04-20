@@ -67,8 +67,8 @@ SMacierz <STyp, SPole, SWymiar>& SMacierz <STyp, SPole, SWymiar>::MaxWiersz(cons
   
   assert(Kol<ROZMIAR); // Sprawdzenie czy indeks mieści się w dopuszczalnym zakresie
 
-  double Temp; 
-  double Temp2;
+  SPole Temp; 
+  SPole Temp2;
   uint i=1;
 
   Temp=modul((*this)(ROZMIAR-i, Kol));
@@ -147,7 +147,7 @@ void SMacierz <STyp, SPole, SWymiar>::ZerowanieKol(const uint Kol){
 
 assert(Kol<(ROZMIAR-1));
 
-   double Wsp;
+   SPole Wsp;
 
    for(uint i=Kol; (i+1)<ROZMIAR; ++i)
    {
@@ -160,7 +160,8 @@ template <typename STyp, typename SPole, uint SWymiar>
 SPole SMacierz <STyp, SPole, SWymiar>::Wyznacznik() const
 { 
   SMacierz <STyp, SPole, SWymiar> M3=*this;
-  SPole Wyznacznik=1;
+  SPole Wyznacznik;
+  Wyznacznik=1;
   uint liczba=0;
 
 
@@ -177,12 +178,14 @@ SPole SMacierz <STyp, SPole, SWymiar>::Wyznacznik() const
   for(uint i=0; i<ROZMIAR; ++i) Wyznacznik=Wyznacznik*M3(i,i);
   if(liczba%2!=0) Wyznacznik=Wyznacznik*(-1);
   
+  /*
   if (Wyznacznik-epsilon<0 && Wyznacznik+epsilon>0)
   {
     Wyznacznik=0;
     return Wyznacznik;
   }
-  
+  */
+
   return Wyznacznik;
 }
 

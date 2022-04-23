@@ -89,6 +89,29 @@ LZ LZ::operator-(LZ& lz1){
   return lz1;
 }
 
+LZ LZ::operator-(LZ lz1) const
+{
+  lz1.im-=this->im;
+  lz1.re-=this->re;
+  return lz1;
+}
+
+double LZ::operator-(double liczba)
+{
+  double Temp;
+  Temp=this->modul();
+
+  return Temp-liczba;
+}
+
+double LZ::operator+(double liczba)
+{
+  double Temp;
+  Temp=this->modul();
+
+  return Temp+liczba;
+}
+
 LZ LZ::operator*(LZ lz1){
   /* przeciazenie operatora mnozenia dla liczb zespolonych */
   double Re, Im;
@@ -98,6 +121,15 @@ LZ LZ::operator*(LZ lz1){
   lz1.re=Re;
   lz1.im=Im;
   return lz1;
+}
+
+LZ LZ::operator*(double liczba)
+{
+  LZ Temp;
+  Temp.re=(this->re)*liczba;
+  Temp.im=(this->im)*liczba;
+
+  return Temp;
 }
 
 LZ LZ::operator/(double liczba){
@@ -131,21 +163,23 @@ LZ LZ::sprzezenie(LZ& lz1){
   return lz1;
 }
 
-double LZ::modul_kwadrat(){
+double LZ::modul_kwadrat() const
+{
   /* funkcja modul: funkcja zwracajaca */
   /* modul liczby zespolonej           */
   /* typ zwracanej wartości: double    */
   return potega_kwadrat(this->re)+potega_kwadrat(this->im);
 }
 
-double LZ::modul()
+double LZ::modul() const
 {
   double Temp;
   Temp=(potega_kwadrat(this->re)+potega_kwadrat(this->im));
   return sqrt(Temp);
 }
 
-double LZ::potega_kwadrat(double liczba){
+double LZ::potega_kwadrat(double liczba) const
+{
   /* funkcja potega: funkcja zwracajaca  */
   /* kwadrat podanej liczby rzeczywistej */
   /* typ zwracanej wartości: double      */
@@ -154,6 +188,16 @@ double LZ::potega_kwadrat(double liczba){
 
 bool LZ::operator==(LZ& lz1){
   return ((lz1.re==this->re)&&(lz1.im==this->im));
+}
+
+bool LZ::operator!=(double liczba)
+{
+  return ((this->re)!=liczba)&&((this->im)==0);
+}
+
+bool LZ::operator==(double liczba)
+{
+  return ((this->re)==liczba)&&((this->im)==0);
 }
 
 bool LZ::operator<(double liczba)

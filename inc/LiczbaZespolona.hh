@@ -26,15 +26,20 @@ class LZ{
   // Operatory
   LZ operator+(LZ& lz1);
   LZ operator-(LZ& lz1);
+  LZ operator-(LZ lz1) const;
   LZ operator*(LZ lz1);
   LZ operator* (double liczba);
   LZ operator/(double liczba);
   LZ operator/(LZ& lz1);
   LZ& operator= (double liczba);
   LZ sprzezenie(LZ& lz1);
-  double modul_kwadrat();
-  double modul();
-  double potega_kwadrat(double liczba);
+  
+  double operator-(double liczba);
+  double operator+(double liczba);
+  double modul_kwadrat() const;
+  double modul() const;
+  double potega_kwadrat(double liczba) const;
+  
   bool operator==(LZ& lz1);
   bool operator==(double liczba);
   bool operator!=(double liczba);

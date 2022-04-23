@@ -79,7 +79,7 @@ SMacierz <STyp, SPole, SWymiar>& SMacierz <STyp, SPole, SWymiar>::MaxWiersz(cons
     Temp2=modul((*this)(ROZMIAR-(i+1), Kol));
     if(Temp2<Temp)
     {
-      (*this).ZamianaWier(ROZMIAR-i, ROZMIAR-(i+1));
+      this->ZamianaWier(ROZMIAR-i, ROZMIAR-(i+1));
       liczba++;
     }
     else Temp=Temp2;
@@ -153,6 +153,7 @@ assert(Kol<(ROZMIAR-1));
    for(uint i=Kol; (i+1)<ROZMIAR; ++i)
    {
      Wsp=(*this)(i+1, Kol)/((*this)(Kol, Kol));
+     std :: cout << "Wspolczynnik do zerowania: " << Wsp << std::endl;
      (*this)[i+1]=(*this)[i+1]-(((*this)[Kol])*Wsp);
    }
  }
@@ -169,6 +170,7 @@ SPole SMacierz <STyp, SPole, SWymiar>::Wyznacznik() const
   Wyznacznik=1;
   uint liczba=0;
 
+  std::cout << "Macierz: " << M3 << std::endl;
 
   for(uint i=0; (i+1)<ROZMIAR; ++i){
     M3.MaxWiersz(i, liczba);
@@ -177,7 +179,8 @@ SPole SMacierz <STyp, SPole, SWymiar>::Wyznacznik() const
       Wyznacznik=0;
       return Wyznacznik;
     }
-    M3.ZerowanieKol(i); 
+    M3.ZerowanieKol(i);
+    std::cout << "Macierz po zerowaniu kolumn: " << M3 << std::endl; 
   }
 
   for(uint i=0; i<ROZMIAR; ++i) Wyznacznik=Wyznacznik*M3(i,i);

@@ -8,8 +8,11 @@ __start__: ${TRGDIR}/test_wektora
 ${OBJ}:
 	mkdir -p ${OBJ}
 
-${TRGDIR}/test_wektora: ${OBJ} ${OBJ}/main.o
-	g++ -o ${TRGDIR}/test_wektora ${OBJ}/main.o
+${TRGDIR}/test_wektora: ${OBJ} ${OBJ}/main.o ${OBJ}/LiczbaZespolona.o
+	g++ -o ${TRGDIR}/test_wektora ${OBJ}/main.o ${OBJ}/LiczbaZespolona.o
 
 ${OBJ}/main.o: src/main.cpp inc/SWektor.hh inc/SMacierz.hh inc/SUkladRownan.hh
 	g++ -c ${CXXFLAGS} -o ${OBJ}/main.o src/main.cpp
+
+${OBJ}/LiczbaZespolona.o: src/LiczbaZespolona.cpp
+	g++ -c ${CXXFLAGS} -o ${OBJ}/LiczbaZespolona.o src/LiczbaZespolona.cpp

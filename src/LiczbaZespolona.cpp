@@ -146,7 +146,14 @@ LZ LZ::operator/(double liczba){
 LZ LZ::operator/(LZ& lz1){
   /* przeciazenie operatora dzielenia dla dwoch liczb */
   /* zespolonych. */
-  return ((*this)*sprzezenie(lz1))/modul_kwadrat();
+  LZ Temp1;
+  std::cout << "LZ: "<< lz1 << std::endl;
+  Temp1=sprzezenie(lz1);
+  double Temp2;
+  Temp2=lz1.modul_kwadrat();
+  std::cout << "Sprzezenie: " << Temp1 << std::endl;
+
+  return ((*this)*Temp1)/Temp2;
 }
 
 LZ &LZ::operator= (double liczba)
@@ -159,7 +166,7 @@ LZ &LZ::operator= (double liczba)
 LZ LZ::sprzezenie(LZ& lz1){
   /* funkcja sprzezenie: funkcja zwracajaca */
   /* sprzezenie podanej liczby zespolonej   */
-  lz1.im=(this->im*(-1));
+  lz1.im=((lz1.im)*(-1));
   return lz1;
 }
 

@@ -14,26 +14,22 @@ int main()
        << " --------- Test klasy SUkladRownan---------------" << endl;
   
   SWektor<LZ,ROZMIAR>    W, W_wynik, X;
+  LZ Z1, Z2;
   double Wynik;
   uint liczba=0;
   SMacierz<SWektor<LZ, ROZMIAR>, LZ, ROZMIAR> M;
-  SUkladRownanLiniowych< SMacierz<SWektor<LZ, ROZMIAR>, LZ, ROZMIAR>, SWektor <LZ, ROZMIAR>, LZ> UklRown;
-  
-  for (unsigned int Ind = 0; Ind < ROZMIAR; ++Ind) {
-    W[Ind] = Ind;
-  }
 
-  input>>UklRown;
+  input>>Z1;
+  input>>Z2;
 
-  cout << " Wyswietlenie ukladu rownan: " << endl;
-  cout << UklRown << endl;
-  cout << endl;
+  cout << "LZ 1" << Z1 << endl;
+  cout << "LZ 2" << Z2 << endl;
 
-  UklRown.Solve(X);
+  cout << "Wynik dzielenia: " << Z1/Z2 << endl;
 
-  cout << " Wyyswietlenie rozwiazania ukladu rownan: " << endl;
-  cout << X << endl;
-  cout << endl;
+  return 0;
+
+
 
 
 }

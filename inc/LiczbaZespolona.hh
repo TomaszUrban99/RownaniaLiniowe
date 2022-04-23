@@ -32,7 +32,7 @@ class LZ{
   LZ operator/(double liczba);
   LZ operator/(LZ& lz1);
   LZ& operator= (double liczba);
-  LZ sprzezenie(LZ& lz1);
+  LZ sprzezenie() const;
   
   double operator-(double liczba);
   double operator+(double liczba);

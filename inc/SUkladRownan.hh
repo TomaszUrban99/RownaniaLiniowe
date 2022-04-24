@@ -4,6 +4,7 @@
 #include "SMacierz.hh"
 #include "SWektor.hh"
 #include "rozmiar.h"
+#include "LiczbaZespolona.hh"
 
 template <typename STypA, typename STypb, typename SPole>
 class SUkladRownanLiniowych {
@@ -12,7 +13,6 @@ class SUkladRownanLiniowych {
   STypb b;  // Wektor przechowujący wyrazy wolne
   
   public:
-
   STypA& getA() {return (this->A);}
   STypA getA() const {return (this->A);}
   STypb& getb() {return (this->b);}
@@ -55,10 +55,13 @@ bool SUkladRownanLiniowych<STypA, STypb, SPole>::Solve(STypb& X)
     SPole W1; // Zmienna pomocnicza do przechowywania wartości wyznacznika
 
     W=(this->getA()).Wyznacznik(); // Wyliczenie głównego wyznacznika
+    std::cout << " Wyznacznik glowny: " << W << std::endl;
 
     for(uint i=0; i<ROZMIAR; ++i){
         Temp=(this->A).ZamianaKol(i, (this->b));
         W1=Temp.Wyznacznik();
+
+        std::cout << "Wyznacznik " << i+1 << " " << W1 << std::endl;
 
         if(W!=0) X[i]=W1/W;
         else {return false;}

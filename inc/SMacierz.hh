@@ -7,6 +7,7 @@
 #include "assert.h"
 #include <utility>
 #include "SOperacjeMatematyczne.hh"
+#include "LiczbaZespolona.hh"
 
 template <typename STyp, typename SPole, uint SWymiar>
 class SMacierz
@@ -67,8 +68,8 @@ SMacierz <STyp, SPole, SWymiar>& SMacierz <STyp, SPole, SWymiar>::MaxWiersz(cons
   
   assert(Kol<ROZMIAR); // Sprawdzenie czy indeks mieści się w dopuszczalnym zakresie
 
-  double Temp; 
-  double Temp2;
+  SPole Temp; 
+  SPole Temp2;
   uint i=1;
 
   Temp=modul((*this)(ROZMIAR-i, Kol));
@@ -76,9 +77,9 @@ SMacierz <STyp, SPole, SWymiar>& SMacierz <STyp, SPole, SWymiar>::MaxWiersz(cons
   for(; i<(ROZMIAR-Kol); ++i)
   {
     Temp2=modul((*this)(ROZMIAR-(i+1), Kol));
-    if(Temp>Temp2)
+    if(Temp2<Temp)
     {
-      (*this).ZamianaWier(ROZMIAR-i, ROZMIAR-(i+1));
+      this->ZamianaWier(ROZMIAR-i, ROZMIAR-(i+1));
       liczba++;
     }
     else Temp=Temp2;
@@ -147,36 +148,51 @@ void SMacierz <STyp, SPole, SWymiar>::ZerowanieKol(const uint Kol){
 
 assert(Kol<(ROZMIAR-1));
 
-   double Wsp;
+   SPole Wsp;
 
    for(uint i=Kol; (i+1)<ROZMIAR; ++i)
    {
      Wsp=(*this)(i+1, Kol)/((*this)(Kol, Kol));
+     std :: cout << "Wspolczynnik do zerowania: " << Wsp << std::endl;
      (*this)[i+1]=(*this)[i+1]-(((*this)[Kol])*Wsp);
    }
  }
+
+/* Zrobić dwie wersje metod- jedna dla wyznacznika dla przypadku liczb zespolonych,
+drugą wersję dla liczb rzeczywistych 
+Dodatkowo napisać metodę liczącą moduł liczby rzeczywistej*/
 
 template <typename STyp, typename SPole, uint SWymiar>
 SPole SMacierz <STyp, SPole, SWymiar>::Wyznacznik() const
 { 
   SMacierz <STyp, SPole, SWymiar> M3=*this;
-  double Wyznacznik=1;
+  SPole Wyznacznik;
+  Wyznacznik=1;
   uint liczba=0;
 
+  std::cout << "Macierz: " << M3 << std::endl;
 
   for(uint i=0; (i+1)<ROZMIAR; ++i){
     M3.MaxWiersz(i, liczba);
-    if (M3(i, i)==0) return 0;
-    M3.ZerowanieKol(i); 
+    if (M3(i, i)==0)
+    {
+      Wyznacznik=0;
+      return Wyznacznik;
+    }
+    M3.ZerowanieKol(i);
+    std::cout << "Macierz po zerowaniu kolumn: " << M3 << std::endl; 
   }
 
   for(uint i=0; i<ROZMIAR; ++i) Wyznacznik=Wyznacznik*M3(i,i);
   if(liczba%2!=0) Wyznacznik=Wyznacznik*(-1);
   
-  if (Wyznacznik-epsilon<0 && Wyznacznik+epsilon>0) return 0;
-  
+  if (Wyznacznik-epsilon<0 && Wyznacznik+epsilon>0)
+  {
+    Wyznacznik=0;
+    return Wyznacznik;
+  }
+
   return Wyznacznik;
 }
-
 
 #endif

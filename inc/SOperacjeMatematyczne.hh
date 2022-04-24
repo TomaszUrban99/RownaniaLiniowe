@@ -2,11 +2,12 @@
 #define SOPERACJE_HH
 
 #include <iostream>
+#include "LiczbaZespolona.hh"
 
 template <typename STyp>
-double modul (STyp Liczba)
+STyp modul (STyp Liczba)
 {
-    if(Liczba<0) return (-1)*Liczba;
+    if(Liczba<0) return ((Liczba)*(-1));
     else return Liczba;
 }
 

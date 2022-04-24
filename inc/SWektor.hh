@@ -16,9 +16,9 @@ class SWektor {
     STyp &operator [] (unsigned int Ind)       { return tab[Ind]; }
 
     SWektor<STyp,SWymiar> operator - (const SWektor<STyp,SWymiar> &Odjemnik) const;
-    SWektor<STyp,SWymiar> operator * (double Mnoznik) const;
+    SWektor<STyp,SWymiar> operator * (STyp Mnoznik) const;
     SWektor<STyp,SWymiar> operator + (const SWektor<STyp, SWymiar> &Wektor2) const;
-    SWektor<STyp,SWymiar> operator / (double Dzielnik) const;
+    SWektor<STyp,SWymiar> operator / (STyp Dzielnik) const;
 
     double operator * (const SWektor<STyp,SWymiar> Wektor2) const;
     double modul() const;
@@ -45,7 +45,7 @@ SWektor<STyp,SWymiar> SWektor<STyp,SWymiar>::operator - (const SWektor<STyp,SWym
 
 
 template <typename STyp, int SWymiar>
-SWektor<STyp,SWymiar> SWektor<STyp,SWymiar>::operator * (double Mnoznik) const
+SWektor<STyp,SWymiar> SWektor<STyp,SWymiar>::operator * (STyp Mnoznik) const
 {
   SWektor<STyp,SWymiar>  Wynik;
 
@@ -54,7 +54,7 @@ SWektor<STyp,SWymiar> SWektor<STyp,SWymiar>::operator * (double Mnoznik) const
 }
 
 template <typename STyp, int SWymiar>
-SWektor<STyp, SWymiar> SWektor<STyp,SWymiar>::operator / (double Dzielnik) const
+SWektor<STyp, SWymiar> SWektor<STyp,SWymiar>::operator / (STyp Dzielnik) const
 {
   SWektor<STyp,SWymiar> Wynik;
   

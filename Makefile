@@ -1,10 +1,9 @@
 CXXFLAGS= -c -g -std=c++11 -iquote inc -Wall -pedantic
-TRGDIR=/tmp/bk/test_swektora
+TRGDIR=~/Programowanie_Obiektowe/szablon/test_swektora
 OBJ=/tmp/bk/test_swektora/obj
 
 __start__: ${TRGDIR}/test_wektora
-	${TRGDIR}/test_wektora 1>plik.txt 0>plik.txt 2>log.txt
-
+	${TRGDIR}/test_wektora macierz.txt 1>plik.txt 
 ${OBJ}:
 	mkdir -p ${OBJ}
 

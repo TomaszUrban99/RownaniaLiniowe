@@ -4,28 +4,62 @@
 #include "LiczbaZespolona.hh"
 #include "rozmiar.h"
 #include <fstream>
+#include <iomanip>
 using namespace std;
 
-int main()
-{
-  ifstream input("Ukl2.txt");
+typedef SWektor<LZ, ROZMIAR> WektZesp;
+typedef SWektor<double, ROZMIAR> WektRz;
 
-  cout << endl
-       << " --------- Test klasy SUkladRownan---------------" << endl;
-  
-  SWektor<LZ,ROZMIAR>    W, W_wynik, X;
-  LZ Z1, Z2;
-  double Wynik;
-  uint liczba=0;
-  SMacierz<SWektor<LZ, ROZMIAR>, LZ, ROZMIAR> M;
+int main(int argc, char** argv)
+{ 
+  ifstream input(argv[1]);
+  if(input.fail())
+  {
+    cerr << "Blad: nie podano prawidlowego pliku " << endl;
+    return -1;
+  }
 
-  input>>Z1;
-  input>>Z2;
+  char Temp; // zmienna do przechowywania "identyfikatora"
+  input>>Temp;
 
-  cout << "LZ 1" << Z1 << endl;
-  cout << "LZ 2" << Z2 << endl;
+  if(Temp=='z')
+  {
+    WektZesp  Xz;
+    SUkladRownanLiniowych< SMacierz< WektZesp, LZ, ROZMIAR >, WektZesp, LZ> UklRownZ; 
+    input>>UklRownZ;
+    
+    if(input.fail())
+    {
+      cerr<< " Blad odczytu " << endl;
+      return -1;
+    }
 
-  cout << "Wynik dzielenia: " << Z1/Z2 << endl;
+
+    UklRownZ.Solve(Xz);
+    cout << "Rozwiazanie rownania zespolonego: " << endl;
+    cout << fixed << setprecision (2) << Xz << endl;
+  }
+  else{
+  if(Temp=='r')
+  {
+    WektRz Xr;
+    SUkladRownanLiniowych< SMacierz< WektRz, double, ROZMIAR >, WektRz, double> UklRownRz;
+    input>>UklRownRz;
+     if(input.fail())
+    {
+      cerr<< " Blad odczytu " << endl;
+      return -1;
+    }
+    
+    UklRownRz.Solve(Xr);
+    cout << "Rozwiazanie rownania rzeczywistego: " << endl;
+    cout << fixed << setprecision(2) << Xr << endl;
+  }
+  else
+  {
+    cerr << " Bledny format danych " << endl;
+    return -1; 
+  }}
 
   return 0;
 

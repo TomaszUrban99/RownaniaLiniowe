@@ -75,22 +75,17 @@ std::istream& operator>>(std::istream& input, LZ& lz){
     return input;
 }
 
-LZ LZ::operator+(LZ& lz1){
-  /* przeciazenie operatora dodawania dla liczb zespolonych */
-  lz1.re+=this->re;
-  lz1.im+=this->im;
-  return lz1;
-}
-
-LZ LZ::operator-(LZ& lz1){
-  /*przeciazenie operatora odejmowania dla liczb zespolonych*/
-  lz1.im-=this->im;
-  lz1.re-=this->re;
-  return lz1;
-}
-
-LZ LZ::operator-(LZ lz1) const
+LZ LZ::operator+(LZ lz1)
 {
+  lz1.re=lz1.re+(this->re);
+  lz1.im=lz1.im+(this->im);
+
+  return lz1;
+}
+
+LZ LZ::operator-(LZ lz1)
+{
+
   lz1.im-=this->im;
   lz1.re-=this->re;
   return lz1;
@@ -117,7 +112,7 @@ LZ LZ::operator*(LZ lz1){
   double Re, Im;
   
   Re=(lz1.re*(this->re))-(lz1.im*(this->im));
-  Im=((this->im)*(lz1.re))+(lz1.im*(this->im));
+  Im=((this->im)*(lz1.re))+(lz1.im*(this->re));
   lz1.re=Re;
   lz1.im=Im;
   return lz1;
@@ -138,15 +133,16 @@ LZ LZ::operator/(double liczba){
 
   LZ lz1;
   lz1.re=(this->re)/liczba;
-  lz1.im=(this->re)/liczba;
+  lz1.im=(this->im)/liczba;
 
   return lz1;
 }
 
-LZ LZ::operator/(LZ& lz1){
+LZ LZ::operator/(LZ lz1){
   /* przeciazenie operatora dzielenia dla dwoch liczb */
   /* zespolonych. */
-  return ((*this)*(lz1.sprzezenie()))/(lz1.modul_kwadrat());
+  LZ temp=(*this);
+  return ((lz1.sprzezenie())*(temp)/(lz1.modul_kwadrat()));
 }
 
 LZ &LZ::operator= (double liczba)
@@ -194,7 +190,7 @@ bool LZ::operator==(LZ& lz1){
 
 bool LZ::operator!=(double liczba)
 {
-  return ((this->re)!=liczba)&&((this->im)==0);
+  return ((this->re)!=liczba)||((this->im)!=0);
 }
 
 bool LZ::operator==(double liczba)

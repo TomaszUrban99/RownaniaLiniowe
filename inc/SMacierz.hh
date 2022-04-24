@@ -153,14 +153,9 @@ assert(Kol<(ROZMIAR-1));
    for(uint i=Kol; (i+1)<ROZMIAR; ++i)
    {
      Wsp=(*this)(i+1, Kol)/((*this)(Kol, Kol));
-     std :: cout << "Wspolczynnik do zerowania: " << Wsp << std::endl;
      (*this)[i+1]=(*this)[i+1]-(((*this)[Kol])*Wsp);
    }
  }
-
-/* Zrobić dwie wersje metod- jedna dla wyznacznika dla przypadku liczb zespolonych,
-drugą wersję dla liczb rzeczywistych 
-Dodatkowo napisać metodę liczącą moduł liczby rzeczywistej*/
 
 template <typename STyp, typename SPole, uint SWymiar>
 SPole SMacierz <STyp, SPole, SWymiar>::Wyznacznik() const
@@ -170,7 +165,6 @@ SPole SMacierz <STyp, SPole, SWymiar>::Wyznacznik() const
   Wyznacznik=1;
   uint liczba=0;
 
-  std::cout << "Macierz: " << M3 << std::endl;
 
   for(uint i=0; (i+1)<ROZMIAR; ++i){
     M3.MaxWiersz(i, liczba);
@@ -180,12 +174,11 @@ SPole SMacierz <STyp, SPole, SWymiar>::Wyznacznik() const
       return Wyznacznik;
     }
     M3.ZerowanieKol(i);
-    std::cout << "Macierz po zerowaniu kolumn: " << M3 << std::endl; 
   }
 
   for(uint i=0; i<ROZMIAR; ++i) Wyznacznik=Wyznacznik*M3(i,i);
   if(liczba%2!=0) Wyznacznik=Wyznacznik*(-1);
-  
+
   if (Wyznacznik-epsilon<0 && Wyznacznik+epsilon>0)
   {
     Wyznacznik=0;

@@ -24,13 +24,12 @@ class LZ{
   void Zmien_Im(double liczba){this->im=liczba;}
   
   // Operatory
-  LZ operator+(LZ& lz1);
-  LZ operator-(LZ& lz1);
-  LZ operator-(LZ lz1) const;
+  LZ operator+(LZ lz1);
+  LZ operator-(LZ lz1);
   LZ operator*(LZ lz1);
   LZ operator* (double liczba);
   LZ operator/(double liczba);
-  LZ operator/(LZ& lz1);
+  LZ operator/(LZ lz1);
   LZ& operator= (double liczba);
   LZ sprzezenie() const;
   

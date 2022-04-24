@@ -1,7 +1,7 @@
 #ifndef ROZMIAR_H
 #define ROZMIAR_H
 
-#define ROZMIAR   2
-#define epsilon 5e-13
+#define ROZMIAR   5
+#define epsilon 2e-13
 
 #endif
